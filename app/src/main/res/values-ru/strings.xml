@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_name">Tatarstan free WiFi</string>
+    <string name="navigation_drawer_open">Открыть меню</string>
+    <string name="navigation_drawer_close">Закрыть меню</string>
+    <string name="nav_header_title">Бесплатный WiFi в Татарстане</string>
+    <string name="nav_header_subtitle">Список адресов точек</string>
+    <string name="nav_header_desc">Navigation header</string>
+    <string name="action_update_hotspot_db">Обновить базу точек WiFi</string>
+
+    <string name="menu_home">Список WiFi-точек</string>
+    <string name="menu_settings">Настройки</string>
+    <string name="menu_about">О приложении</string>
+
+    <string name="distance_unknown">Расстояние: неизвестно</string>
+    <string name="distance_1000">Расстояние: ~%d м</string>
+    <string name="distance_3000">Расстояние: ~%.1f км</string>
+    <string name="distance_max">Расстояние: ~%d км</string>
+
+</resources>
