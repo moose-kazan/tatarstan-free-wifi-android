@@ -16,4 +16,6 @@
     <string name="distance_3000">Расстояние: ~%.1f км</string>
     <string name="distance_max">Расстояние: ~%d км</string>
 
+    <string name="request_permissions_text">Приложению требуется доступ к вашему местоположению для отображения WiFi-точек поблизости.</string>
+    <string name="request_permissions_button">Разрешить доступ</string>
 </resources>

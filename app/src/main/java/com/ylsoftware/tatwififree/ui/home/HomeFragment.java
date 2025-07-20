@@ -1,5 +1,13 @@
 package com.ylsoftware.tatwififree.ui.home;
 
+import static com.google.android.gms.location.LocationServices.*;
+import static com.google.android.gms.location.Priority.PRIORITY_HIGH_ACCURACY;
+
+import android.Manifest;
+import android.annotation.SuppressLint;
+import android.content.pm.PackageManager;
+import android.location.Location;
+import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -8,11 +16,17 @@ import android.view.ViewGroup;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
+import androidx.annotation.Nullable;
+import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
 import androidx.recyclerview.widget.RecyclerView;
 
+import com.google.android.gms.location.FusedLocationProviderClient;
+import com.google.android.gms.location.LocationRequest;
+import com.google.android.gms.location.LocationServices;
+import com.google.android.gms.tasks.OnSuccessListener;
 import com.google.gson.Gson;
 
 import com.ylsoftware.tatwififree.Hotspot;
@@ -28,8 +42,17 @@ import java.util.Comparator;
 
 public class HomeFragment extends Fragment {
     ArrayList<Hotspot> hotspots = new ArrayList<Hotspot>();
+    HotspotAdapter hostspotAdapter = null;
 
     private FragmentHomeBinding binding;
+
+    private FusedLocationProviderClient fusedLocationClient;
+
+    public void onCreate(@Nullable Bundle savedInstanceState) {
+        super.onCreate(savedInstanceState);
+
+        fusedLocationClient = LocationServices.getFusedLocationProviderClient(this.getActivity());
+    }
 
     public View onCreateView(@NonNull LayoutInflater inflater,
                              ViewGroup container, Bundle savedInstanceState) {
@@ -47,26 +70,31 @@ public class HomeFragment extends Fragment {
 
         loadHotspotList();
 
-        final HotspotAdapter adapter = new HotspotAdapter(hotspots);
+        this.hostspotAdapter = new HotspotAdapter(hotspots);
 
-        hotspotListView.setAdapter(adapter);
+        hotspotListView.setAdapter(this.hostspotAdapter);
+
+        getGeoLocation();
 
         return root;
     }
 
+    @SuppressLint("MissingPermission")
+    private void getGeoLocation() {
+        //Log.i("LOCATION:", "START");
+        fusedLocationClient.getCurrentLocation(PRIORITY_HIGH_ACCURACY, null).addOnSuccessListener(this.getActivity(), new OnSuccessListener<Location>() {
+            @Override
+            public void onSuccess(Location location) {
+                if (location != null) {
+                    hostspotAdapter.setCurrentLocation(location);
+                    //Log.i("LOCATION:", "LON" + location.getLongitude() + " LAT: "+ location.getLatitude());
+                }
+            }
+        });
+    }
+
     private void loadHotspotList() {
         loadHotspotListFromResource(R.raw.points);
-        /*
-        this.hotspots.clear();
-        this.hotspots.add(new Hotspot("Технопарк им.Попова", 55.751587, 48.752445));
-        this.hotspots.add(new Hotspot("Технопарк им.Лобачевского", 55.752194, 48.749498));
-        this.hotspots.add(new Hotspot("Университет Иннополис", 55.753898, 48.74321));
-        this.hotspots.add(new Hotspot("с. Пестрецы, Советская, 9", 55.748143, 49.654036));
-        this.hotspots.add(new Hotspot("г. Казань, с. Осиново, Садовая,9 (ТЦ)", 55.872905, 48.882338));
-        this.hotspots.add(new Hotspot("Набережная Озера Кабан", 55.781476, 49.123304));
-        this.hotspots.sort(new HotspotComparator());
-
-         */
     }
 
     private void loadHotspotListFromResource(int resId) {
@@ -89,9 +117,11 @@ public class HomeFragment extends Fragment {
             }
         }
     }
+    @SuppressLint("MissingPermission")
     private void loadHotspotListFromString(String data) {
         Gson gson = new Gson();
         Hotspot[] hotspotList = gson.fromJson(data, Hotspot[].class);
+
         this.hotspots.clear();
         for (int i = 0; i < hotspotList.length; i++) {
             this.hotspots.add(hotspotList[i]);
@@ -104,16 +134,4 @@ public class HomeFragment extends Fragment {
         binding = null;
     }
 
-    public class HotspotComparator implements Comparator<Hotspot> {
-
-        @Override
-        public int compare(Hotspot t1, Hotspot t2) {
-            if (t1.distance == t2.distance) {
-                return 0;
-            } else if (t1.distance > t2.distance) {
-                return 1;
-            }
-            return -1;
-        }
-    }
 }

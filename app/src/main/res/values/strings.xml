@@ -16,5 +16,8 @@
     <string name="distance_3000">Distance: ~%.1f km</string>
     <string name="distance_max">Distance: ~%d km</string>
 
+    <string name="request_permissions_text">This app requires access to your location. It required to show nearest wifi hotspots.</string>
+    <string name="request_permissions_button">Grant permissions</string>
+
     <string name="update_hotspot_list_url" translatable="false">https://abdrakhmanov.github.io/tatsphere/wifi/points.json</string>
 </resources>
