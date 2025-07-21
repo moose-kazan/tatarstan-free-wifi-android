@@ -5,7 +5,6 @@
     <string name="nav_header_title">Бесплатный WiFi в Татарстане</string>
     <string name="nav_header_subtitle">Список адресов точек</string>
     <string name="nav_header_desc">Navigation header</string>
-    <string name="action_update_hotspot_db">Обновить базу точек WiFi</string>
 
     <string name="menu_home">Список WiFi-точек</string>
     <string name="menu_settings">Настройки</string>
@@ -18,4 +17,6 @@
 
     <string name="request_permissions_text">Приложению требуется доступ к вашему местоположению для отображения WiFi-точек поблизости.</string>
     <string name="request_permissions_button">Разрешить доступ</string>
+
+    <string name="notify_cant_get_geo">Не удалось определить ваше местоположение</string>
 </resources>
