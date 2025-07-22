@@ -4,10 +4,8 @@ import android.Manifest;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.View;
 import android.view.Menu;
-import android.widget.Button;
 
 import com.google.android.material.navigation.NavigationView;
 
@@ -72,6 +70,7 @@ public class MainActivity extends AppCompatActivity {
                     if (fineLocationGranted != null && fineLocationGranted) {
                         initMainUI();
                     } else if (coarseLocationGranted != null && coarseLocationGranted) {
+                        // Do nothing....
                     } else {
                     }
                 });

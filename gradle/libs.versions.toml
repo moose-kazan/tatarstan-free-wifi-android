@@ -1,5 +1,5 @@
 [versions]
-agp = "8.9.1"
+agp = "8.9.3"
 gson = "2.13.1"
 junit = "4.13.2"
 junitVersion = "1.2.1"
@@ -7,14 +7,14 @@ espressoCore = "3.6.1"
 appcompat = "1.7.1"
 material = "1.12.0"
 constraintlayout = "2.2.1"
-lifecycleLivedataKtx = "2.6.1"
-lifecycleViewmodelKtx = "2.6.1"
-navigationFragment = "2.6.0"
-navigationUi = "2.6.0"
+lifecycleLivedataKtx = "2.9.2"
+lifecycleViewmodelKtx = "2.9.2"
+navigationFragment = "2.9.2"
+navigationUi = "2.9.2"
 recyclerview = "1.4.0"
 cardview = "1.0.0"
 playServicesLocation = "21.3.0"
-swiperefreshlayout = "1.2.0-alpha01"
+swiperefreshlayout = "1.2.0-beta01"
 
 [libraries]
 gson = { module = "com.google.code.gson:gson", version.ref = "gson" }

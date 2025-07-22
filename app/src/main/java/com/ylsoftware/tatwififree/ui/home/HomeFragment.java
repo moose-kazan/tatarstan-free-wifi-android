@@ -3,7 +3,6 @@ package com.ylsoftware.tatwififree.ui.home;
 import static com.google.android.gms.location.Priority.PRIORITY_HIGH_ACCURACY;
 
 import android.annotation.SuppressLint;
-import android.location.Location;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -21,10 +20,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.android.gms.tasks.OnCompleteListener;
-import com.google.android.gms.tasks.OnFailureListener;
-import com.google.android.gms.tasks.OnSuccessListener;
-import com.google.android.gms.tasks.Task;
 import com.google.gson.Gson;
 
 import com.ylsoftware.tatwififree.Hotspot;
@@ -36,12 +31,13 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
+import java.util.Collections;
 
 public class HomeFragment extends Fragment {
-    ArrayList<Hotspot> hotspots = new ArrayList<Hotspot>();
+    ArrayList<Hotspot> hotspots = new ArrayList<>();
     HotspotAdapter hotspotAdapter = null;
 
-    private SwipeRefreshLayout swipeRefreshLayout;;
+    private SwipeRefreshLayout swipeRefreshLayout;
 
     private FragmentHomeBinding binding;
 
@@ -74,7 +70,7 @@ public class HomeFragment extends Fragment {
         hotspotListView.setAdapter(this.hotspotAdapter);
 
         swipeRefreshLayout = root.findViewById(R.id.swiperefresh);
-        swipeRefreshLayout.setOnRefreshListener(() -> getGeoLocation());
+        swipeRefreshLayout.setOnRefreshListener(this::getGeoLocation);
 
         swipeRefreshLayout.setRefreshing(true);
         getGeoLocation();
@@ -109,7 +105,10 @@ public class HomeFragment extends Fragment {
             InputStream is = getResources().openRawResource(resId);
             dis = new DataInputStream(is);
             byte[] buff = new byte[dis.available()];
-            dis.read(buff, 0, dis.available());
+            if (dis.read(buff, 0, dis.available()) == 0) {
+                throw new Exception("Empty file!");
+            }
+
             loadHotspotListFromString(new String(buff));
         }
         catch (Exception e) {
@@ -129,9 +128,7 @@ public class HomeFragment extends Fragment {
         Hotspot[] hotspotList = gson.fromJson(data, Hotspot[].class);
 
         this.hotspots.clear();
-        for (int i = 0; i < hotspotList.length; i++) {
-            this.hotspots.add(hotspotList[i]);
-        }
+        Collections.addAll(this.hotspots, hotspotList);
     }
 
     @Override
