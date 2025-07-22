@@ -1,24 +1,18 @@
 package com.ylsoftware.tatwififree.ui.home;
 
-import static com.google.android.gms.location.LocationServices.*;
 import static com.google.android.gms.location.Priority.PRIORITY_HIGH_ACCURACY;
 
-import android.Manifest;
 import android.annotation.SuppressLint;
-import android.content.pm.PackageManager;
 import android.location.Location;
-import android.location.LocationManager;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
-import androidx.core.app.ActivityCompat;
 import androidx.fragment.app.Fragment;
 import androidx.lifecycle.ViewModelProvider;
 import androidx.recyclerview.widget.LinearLayoutManager;
@@ -26,7 +20,6 @@ import androidx.recyclerview.widget.RecyclerView;
 import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
-import com.google.android.gms.location.LocationRequest;
 import com.google.android.gms.location.LocationServices;
 import com.google.android.gms.tasks.OnCompleteListener;
 import com.google.android.gms.tasks.OnFailureListener;
@@ -43,11 +36,10 @@ import java.io.DataInputStream;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Comparator;
 
 public class HomeFragment extends Fragment {
     ArrayList<Hotspot> hotspots = new ArrayList<Hotspot>();
-    HotspotAdapter hostspotAdapter = null;
+    HotspotAdapter hotspotAdapter = null;
 
     private SwipeRefreshLayout swipeRefreshLayout;;
 
@@ -77,17 +69,12 @@ public class HomeFragment extends Fragment {
 
         loadHotspotList();
 
-        this.hostspotAdapter = new HotspotAdapter(hotspots);
+        this.hotspotAdapter = new HotspotAdapter(hotspots);
 
-        hotspotListView.setAdapter(this.hostspotAdapter);
+        hotspotListView.setAdapter(this.hotspotAdapter);
 
         swipeRefreshLayout = root.findViewById(R.id.swiperefresh);
-        swipeRefreshLayout.setOnRefreshListener(new SwipeRefreshLayout.OnRefreshListener() {
-            @Override
-            public void onRefresh() {
-                getGeoLocation();
-            }
-        });
+        swipeRefreshLayout.setOnRefreshListener(() -> getGeoLocation());
 
         swipeRefreshLayout.setRefreshing(true);
         getGeoLocation();
@@ -99,28 +86,17 @@ public class HomeFragment extends Fragment {
     private void getGeoLocation() {
         //Log.i("LOCATION:", "START");
         fusedLocationClient.getCurrentLocation(PRIORITY_HIGH_ACCURACY, null)
-                .addOnSuccessListener(this.getActivity(), new OnSuccessListener<Location>() {
-                    @Override
-                    public void onSuccess(Location location) {
-                        if (location != null) {
-                            hostspotAdapter.setCurrentLocation(location);
-                            //Log.i("LOCATION:", "LON" + location.getLongitude() + " LAT: "+ location.getLatitude());
-                        }
+                .addOnSuccessListener(this.getActivity(), location -> {
+                    if (location != null) {
+                        hotspotAdapter.setCurrentLocation(location);
+                        //Log.i("LOCATION:", "LON" + location.getLongitude() + " LAT: "+ location.getLatitude());
                     }
                 })
-                .addOnFailureListener(this.getActivity(), new OnFailureListener() {
-                    @Override
-                    public void onFailure(@NonNull Exception e) {
-                        Toast toast = Toast.makeText(getActivity(), getString(R.string.notify_cant_get_geo), Toast.LENGTH_LONG);
-                        toast.show();
-                    }
+                .addOnFailureListener(this.getActivity(), e -> {
+                    Toast toast = Toast.makeText(getActivity(), getString(R.string.notify_cant_get_geo), Toast.LENGTH_LONG);
+                    toast.show();
                 })
-                .addOnCompleteListener(this.getActivity(), new OnCompleteListener<Location>() {
-                    @Override
-                    public void onComplete(@NonNull Task<Location> task) {
-                        swipeRefreshLayout.setRefreshing(false);
-                    }
-                });
+                .addOnCompleteListener(this.getActivity(), task -> swipeRefreshLayout.setRefreshing(false));
     }
 
     private void loadHotspotList() {
