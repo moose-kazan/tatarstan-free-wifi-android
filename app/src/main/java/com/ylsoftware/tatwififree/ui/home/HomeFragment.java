@@ -3,6 +3,8 @@ package com.ylsoftware.tatwififree.ui.home;
 import static com.google.android.gms.location.Priority.PRIORITY_HIGH_ACCURACY;
 
 import android.annotation.SuppressLint;
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.LayoutInflater;
@@ -65,7 +67,13 @@ public class HomeFragment extends Fragment {
 
         loadHotspotList();
 
-        this.hotspotAdapter = new HotspotAdapter(hotspots);
+        this.hotspotAdapter = new HotspotAdapter(hotspots, new HotspotAdapter.OnItemClickListener() {
+            @Override
+            public void onItemClick(Hotspot item) {
+                openNavigator(item);
+                //Log.i("Clicked", "lat=" + item.lon + " lon=" + item.lon);
+            }
+        });
 
         hotspotListView.setAdapter(this.hotspotAdapter);
 
@@ -77,6 +85,14 @@ public class HomeFragment extends Fragment {
 
         return root;
     }
+
+    private void openNavigator(Hotspot hotspot) {
+        Uri navUri = Uri.parse("geo:" + hotspot.lat + "," + hotspot.lon + "?q=" + Uri.encode(hotspot.address));
+        //Uri navUri = Uri.parse("geo:" + hotspot.lat + "," + hotspot.lon);
+        Intent mapIntent = new Intent(Intent.ACTION_VIEW, navUri);
+        startActivity(mapIntent);
+    }
+
 
     @SuppressLint("MissingPermission")
     private void getGeoLocation() {
@@ -136,5 +152,4 @@ public class HomeFragment extends Fragment {
         super.onDestroyView();
         binding = null;
     }
-
 }

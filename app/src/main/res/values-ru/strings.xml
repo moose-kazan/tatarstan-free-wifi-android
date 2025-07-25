@@ -19,4 +19,6 @@
     <string name="request_permissions_button">Разрешить доступ</string>
 
     <string name="notify_cant_get_geo">Не удалось определить ваше местоположение</string>
+
+    <string name="settings_button_update">Обновить базу WiFi-точек</string>
 </resources>

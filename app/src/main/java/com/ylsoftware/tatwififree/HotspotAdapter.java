@@ -6,6 +6,7 @@ import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.widget.LinearLayout;
 import android.widget.TextView;
 
 import androidx.annotation.NonNull;
@@ -17,9 +18,19 @@ import java.util.List;
 
 public class HotspotAdapter extends RecyclerView.Adapter<HotspotAdapter.ViewHolder>{
     public final List<Hotspot> hotspots;
+    private OnItemClickListener listener = null;
 
     public HotspotAdapter(List<Hotspot> hotspots) {
         this.hotspots = hotspots;
+    }
+
+    public HotspotAdapter(List<Hotspot> hotspots, OnItemClickListener listener) {
+        this.hotspots = hotspots;
+        this.listener = listener;
+    }
+
+    public interface OnItemClickListener {
+        void onItemClick(Hotspot item);
     }
 
     @NonNull
@@ -34,6 +45,9 @@ public class HotspotAdapter extends RecyclerView.Adapter<HotspotAdapter.ViewHold
         Hotspot hotspot = this.hotspots.get(position);
         holder.addrView.setText(hotspot.address);
         holder.distanceView.setText(formatDistance(holder.itemView.getContext(), hotspot.distance));
+        if (this.listener != null) {
+            holder.itemContainer.setOnClickListener(view -> listener.onItemClick(hotspot));
+        }
     }
 
     private String formatDistance(Context context, float meters) {
@@ -82,10 +96,12 @@ public class HotspotAdapter extends RecyclerView.Adapter<HotspotAdapter.ViewHold
     public static class ViewHolder extends RecyclerView.ViewHolder {
 
         final TextView addrView, distanceView;
+        final LinearLayout itemContainer;
         ViewHolder(View view) {
             super(view);
             addrView = view.findViewById(R.id.hotspot_addr);
             distanceView = view.findViewById(R.id.hotspot_distance);
+            itemContainer = view.findViewById(R.id.hotspot_item_container);
         }
     }
 }
