@@ -62,10 +62,8 @@ public class HomeFragment extends Fragment {
 
         loadHotspotList();
 
-        this.hotspotAdapter = new HotspotAdapter(hotspots, item -> {
-            openNavigator(item);
-            //Log.i("Clicked", "lat=" + item.lon + " lon=" + item.lon);
-        });
+        //Log.i("Clicked", "lat=" + item.lon + " lon=" + item.lon);
+        this.hotspotAdapter = new HotspotAdapter(hotspots, this::openNavigator);
 
         hotspotListView.setAdapter(this.hotspotAdapter);
 

@@ -19,10 +19,6 @@ public class HotspotAdapter extends RecyclerView.Adapter<HotspotAdapter.ViewHold
     public final List<Hotspot> hotspots;
     private OnItemClickListener listener = null;
 
-    public HotspotAdapter(List<Hotspot> hotspots) {
-        this.hotspots = hotspots;
-    }
-
     public HotspotAdapter(List<Hotspot> hotspots, OnItemClickListener listener) {
         this.hotspots = hotspots;
         this.listener = listener;
@@ -79,7 +75,7 @@ public class HotspotAdapter extends RecyclerView.Adapter<HotspotAdapter.ViewHold
         this.notifyDataSetChanged();
     }
 
-    public class HotspotComparator implements Comparator<Hotspot> {
+    public static class HotspotComparator implements Comparator<Hotspot> {
 
         @Override
         public int compare(Hotspot t1, Hotspot t2) {
