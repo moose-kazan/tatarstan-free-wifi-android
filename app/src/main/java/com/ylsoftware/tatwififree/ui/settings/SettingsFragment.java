@@ -30,7 +30,6 @@ public class SettingsFragment extends Fragment {
 
     private FragmentSettingsBinding binding;
 
-    private Button updateButton;
     private TextView updateInfo;
     private ProgressBar updateProgress;
     final OkHttpClient okHttpClient = new OkHttpClient();
@@ -43,7 +42,7 @@ public class SettingsFragment extends Fragment {
         binding = FragmentSettingsBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
-        updateButton = root.findViewById(R.id.update_button);
+        Button updateButton = root.findViewById(R.id.update_button);
         updateButton.setOnClickListener(view -> updateButtonClick());
 
         updateInfo = root.findViewById(R.id.update_info);
@@ -61,6 +60,11 @@ public class SettingsFragment extends Fragment {
     }
 
     public void updateButtonClick() {
+        if (HotspotLoader.isFresh(getContext())) {
+            Toast.makeText(getContext(), getString(R.string.settings_notity_already_fresh), Toast.LENGTH_LONG).show();
+            return;
+        }
+
         updateProgress.setVisibility(View.VISIBLE);
         Request request = new Request.Builder()
                 .url(getString(R.string.update_hotspot_list_url))

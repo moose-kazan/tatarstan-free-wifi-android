@@ -22,6 +22,7 @@
 
     <string name="settings_button_update">Update hotspot database</string>
     <string name="settings_notify_count">Current database contains %d hotspots</string>
+    <string name="settings_notity_already_fresh">Database already updated!</string>
     <string name="settings_notity_update_success">Database successfully updated!</string>
     <string name="settings_notity_update_failure">Can\'t update database: %s</string>
 

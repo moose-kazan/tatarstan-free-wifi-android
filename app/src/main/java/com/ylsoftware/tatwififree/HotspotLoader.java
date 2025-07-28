@@ -14,10 +14,27 @@ import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
 import java.util.ArrayList;
 import java.util.Collections;
+import java.util.Objects;
 
 public class HotspotLoader {
     public static String getCacheFileName(Context ctx) {
         return ctx.getFilesDir() + "/points.json";
+    }
+
+    public static boolean isFresh(Context ctx) {
+        if (Files.notExists(Paths.get(getCacheFileName(ctx)))) {
+            return false;
+        }
+
+        try {
+            long fileTime = Files.getLastModifiedTime(Paths.get(getCacheFileName(ctx))).toMillis();
+            long nowTime = System.currentTimeMillis();
+            return (nowTime - fileTime < 3600*1000);
+        } catch (IOException e) {
+            Log.e("Can't get filetime", Objects.requireNonNull(e.getMessage()));
+        }
+
+        return false;
     }
 
     public static void save(Context ctx, String data) throws IOException {
