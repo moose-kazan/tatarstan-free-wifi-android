@@ -11,6 +11,7 @@ lifecycleLivedataKtx = "2.9.2"
 lifecycleViewmodelKtx = "2.9.2"
 navigationFragment = "2.9.2"
 navigationUi = "2.9.2"
+okhttp = "5.1.0"
 recyclerview = "1.4.0"
 cardview = "1.0.0"
 playServicesLocation = "21.3.0"
@@ -28,6 +29,7 @@ lifecycle-livedata-ktx = { group = "androidx.lifecycle", name = "lifecycle-lived
 lifecycle-viewmodel-ktx = { group = "androidx.lifecycle", name = "lifecycle-viewmodel-ktx", version.ref = "lifecycleViewmodelKtx" }
 navigation-fragment = { group = "androidx.navigation", name = "navigation-fragment", version.ref = "navigationFragment" }
 navigation-ui = { group = "androidx.navigation", name = "navigation-ui", version.ref = "navigationUi" }
+okhttp = { module = "com.squareup.okhttp3:okhttp", version.ref = "okhttp" }
 recyclerview = { group = "androidx.recyclerview", name = "recyclerview", version.ref = "recyclerview" }
 cardview = { group = "androidx.cardview", name = "cardview", version.ref = "cardview" }
 play-services-location = { group = "com.google.android.gms", name = "play-services-location", version.ref = "playServicesLocation" }

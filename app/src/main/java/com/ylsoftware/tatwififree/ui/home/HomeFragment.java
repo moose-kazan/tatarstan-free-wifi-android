@@ -26,6 +26,7 @@ import com.google.gson.Gson;
 
 import com.ylsoftware.tatwififree.Hotspot;
 import com.ylsoftware.tatwififree.HotspotAdapter;
+import com.ylsoftware.tatwififree.HotspotLoader;
 import com.ylsoftware.tatwififree.R;
 import com.ylsoftware.tatwififree.databinding.FragmentHomeBinding;
 
@@ -112,39 +113,7 @@ public class HomeFragment extends Fragment {
     }
 
     private void loadHotspotList() {
-        loadHotspotListFromResource(R.raw.points);
-    }
-
-    private void loadHotspotListFromResource(int resId) {
-        DataInputStream dis = null;
-        try {
-            InputStream is = getResources().openRawResource(resId);
-            dis = new DataInputStream(is);
-            byte[] buff = new byte[dis.available()];
-            if (dis.read(buff, 0, dis.available()) == 0) {
-                throw new Exception("Empty file!");
-            }
-
-            loadHotspotListFromString(new String(buff));
-        }
-        catch (Exception e) {
-            Log.e("Can't load file", e.getMessage());
-        }
-        finally {
-            try {
-                dis.close();
-            } catch (IOException e) {
-                Log.e("Can't close file", e.getMessage());
-            }
-        }
-    }
-    @SuppressLint("MissingPermission")
-    private void loadHotspotListFromString(String data) {
-        Gson gson = new Gson();
-        Hotspot[] hotspotList = gson.fromJson(data, Hotspot[].class);
-
-        this.hotspots.clear();
-        Collections.addAll(this.hotspots, hotspotList);
+        this.hotspots = HotspotLoader.load(this.getContext());
     }
 
     @Override

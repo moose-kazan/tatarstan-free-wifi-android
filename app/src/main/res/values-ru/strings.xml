@@ -21,4 +21,7 @@
     <string name="notify_cant_get_geo">Не удалось определить ваше местоположение</string>
 
     <string name="settings_button_update">Обновить базу WiFi-точек</string>
+    <string name="settings_notify_count">Сейчас в базе %d WiFi-точек</string>
+    <string name="settings_notity_update_success">База успешно обновлена!</string>
+    <string name="settings_notity_update_failure">Не удалось обновить базу: %s</string>
 </resources>
