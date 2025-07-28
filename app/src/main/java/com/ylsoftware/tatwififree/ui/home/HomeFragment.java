@@ -6,7 +6,6 @@ import android.annotation.SuppressLint;
 import android.content.Intent;
 import android.net.Uri;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -22,7 +21,6 @@ import androidx.swiperefreshlayout.widget.SwipeRefreshLayout;
 
 import com.google.android.gms.location.FusedLocationProviderClient;
 import com.google.android.gms.location.LocationServices;
-import com.google.gson.Gson;
 
 import com.ylsoftware.tatwififree.Hotspot;
 import com.ylsoftware.tatwififree.HotspotAdapter;
@@ -30,11 +28,7 @@ import com.ylsoftware.tatwififree.HotspotLoader;
 import com.ylsoftware.tatwififree.R;
 import com.ylsoftware.tatwififree.databinding.FragmentHomeBinding;
 
-import java.io.DataInputStream;
-import java.io.IOException;
-import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.Collections;
 
 public class HomeFragment extends Fragment {
     ArrayList<Hotspot> hotspots = new ArrayList<>();
@@ -68,12 +62,9 @@ public class HomeFragment extends Fragment {
 
         loadHotspotList();
 
-        this.hotspotAdapter = new HotspotAdapter(hotspots, new HotspotAdapter.OnItemClickListener() {
-            @Override
-            public void onItemClick(Hotspot item) {
-                openNavigator(item);
-                //Log.i("Clicked", "lat=" + item.lon + " lon=" + item.lon);
-            }
+        this.hotspotAdapter = new HotspotAdapter(hotspots, item -> {
+            openNavigator(item);
+            //Log.i("Clicked", "lat=" + item.lon + " lon=" + item.lon);
         });
 
         hotspotListView.setAdapter(this.hotspotAdapter);

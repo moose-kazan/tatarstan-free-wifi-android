@@ -10,10 +10,8 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.nio.charset.StandardCharsets;
 import java.nio.file.Files;
-import java.nio.file.OpenOption;
 import java.nio.file.Paths;
 import java.nio.file.StandardOpenOption;
-import java.nio.file.attribute.FileTime;
 import java.util.ArrayList;
 import java.util.Collections;
 
@@ -45,7 +43,7 @@ public class HotspotLoader {
         Gson gson = new Gson();
         Hotspot[] hotspotList = gson.fromJson(data, Hotspot[].class);
 
-        ArrayList<Hotspot> hotspots = new ArrayList<Hotspot>();
+        ArrayList<Hotspot> hotspots = new ArrayList<>();
         Collections.addAll(hotspots, hotspotList);
 
         return hotspots;
@@ -59,7 +57,7 @@ public class HotspotLoader {
         catch (Exception e) {
             Log.e("Can't load file", e.getMessage());
         }
-        return new ArrayList<Hotspot>();
+        return new ArrayList<>();
     }
 
     public static ArrayList<Hotspot> loadFromResourse(int resId, Context ctx) {
@@ -84,6 +82,6 @@ public class HotspotLoader {
                 Log.e("Can't close file", e.getMessage());
             }
         }
-        return new ArrayList<Hotspot>();
+        return new ArrayList<>();
     }
 }
