@@ -8,6 +8,8 @@
         android:id="@+id/hotspot_item_container"
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
+        android:paddingStart="10dp"
+        android:paddingEnd="10dp"
         android:minHeight="60pt"
         android:orientation="vertical">
 

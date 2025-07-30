@@ -1,5 +1,7 @@
 package com.ylsoftware.tatwififree.ui.about;
 
+import android.content.Intent;
+import android.net.Uri;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -9,11 +11,10 @@ import androidx.lifecycle.ViewModelProvider;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.TextView;
+import android.widget.Button;
 
 import com.ylsoftware.tatwififree.R;
 import com.ylsoftware.tatwififree.databinding.FragmentAboutBinding;
-import com.ylsoftware.tatwififree.ui.about.AboutViewModel;
 
 public class AboutFragment extends Fragment {
 
@@ -27,7 +28,25 @@ public class AboutFragment extends Fragment {
         binding = FragmentAboutBinding.inflate(inflater, container, false);
         View root = binding.getRoot();
 
+        Button buttonOpenMap = root.findViewById(R.id.about_button_map);
+        buttonOpenMap.setOnClickListener(view -> buttonOpenMapClick());
+
+        Button buttonDonate = root.findViewById(R.id.about_button_donate);
+        buttonDonate.setOnClickListener(view -> buttonDonateClick());
+
         return root;
+    }
+
+    private void buttonDonateClick() {
+        Uri donateUri = Uri.parse(getString(R.string.about_donate_url));
+        Intent urlIntent = new Intent(Intent.ACTION_VIEW, donateUri);
+        startActivity(urlIntent);
+    }
+
+    private void buttonOpenMapClick() {
+        Uri mapUri = Uri.parse(getString(R.string.about_open_map_url));
+        Intent urlIntent = new Intent(Intent.ACTION_VIEW, mapUri);
+        startActivity(urlIntent);
     }
 
     @Override

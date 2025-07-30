@@ -26,5 +26,22 @@
     <string name="settings_notity_update_success">Database successfully updated!</string>
     <string name="settings_notity_update_failure">Can\'t update database: %s</string>
 
+    <string name="about_title">Free WiFi Tatarstan</string>
+    <string name="about_subtitle">List of public hotspots in Tatarstan Republic</string>
+    <string name="about_description1">
+        This app uses the hotspot database of the Ministry of Digitalization of the Tatarstan.\n
+        IMPORTANT: this is NOT an OFFICIAL app! However, you can always use the official map.
+    </string>
+    <string name="about_description2">
+        This app allows you to find a public hotspot even without internet access!\n
+        If this app is useful for you, you can support the developer with a donation.
+    </string>
+    <string name="about_button_open_map">Open Official Map</string>
+    <string name="about_button_donate">Donate to app developer</string>
+
+
+    <string name="about_open_map_url" translatable="false">https://digital.tatarstan.ru/wifi-points.htm</string>
+    <string name="about_donate_url" translatable="false">https://pay.cloudtips.ru/p/4d0ac1c9</string>
+
     <string name="update_hotspot_list_url" translatable="false">https://abdrakhmanov.github.io/tatsphere/wifi/points.json</string>
 </resources>

@@ -4,8 +4,10 @@ import static com.google.android.gms.location.Priority.PRIORITY_HIGH_ACCURACY;
 
 import android.annotation.SuppressLint;
 import android.content.Intent;
+import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
+import android.util.Log;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
@@ -40,8 +42,16 @@ public class HomeFragment extends Fragment {
 
     private FusedLocationProviderClient fusedLocationClient;
 
+    private Location lastLocation = null;
+
     public void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
+        if (savedInstanceState != null) {
+            this.lastLocation = new Location("");
+            this.lastLocation.setLatitude(savedInstanceState.getDouble("last_lat", 0));
+            this.lastLocation.setLongitude(savedInstanceState.getDouble("last_lon", 0));
+            //Log.i("FOUNDLOCATION", this.lastLocation.toString());
+        }
 
         fusedLocationClient = LocationServices.getFusedLocationProviderClient(this.getActivity());
     }
@@ -63,7 +73,7 @@ public class HomeFragment extends Fragment {
         loadHotspotList();
 
         //Log.i("Clicked", "lat=" + item.lon + " lon=" + item.lon);
-        this.hotspotAdapter = new HotspotAdapter(hotspots, this::openNavigator);
+        this.hotspotAdapter = new HotspotAdapter(hotspots, this::openNavigator, this.lastLocation);
 
         hotspotListView.setAdapter(this.hotspotAdapter);
 
@@ -74,6 +84,13 @@ public class HomeFragment extends Fragment {
         getGeoLocation();
 
         return root;
+    }
+
+    @Override
+    public void onSaveInstanceState(@NonNull Bundle outState) {
+        super.onSaveInstanceState(outState);
+        outState.putDouble("last_lon", lastLocation.getLongitude());
+        outState.putDouble("last_lat", lastLocation.getLatitude());
     }
 
     private void openNavigator(Hotspot hotspot) {
@@ -90,6 +107,7 @@ public class HomeFragment extends Fragment {
         fusedLocationClient.getCurrentLocation(PRIORITY_HIGH_ACCURACY, null)
                 .addOnSuccessListener(this.getActivity(), location -> {
                     if (location != null) {
+                        this.lastLocation = location;
                         hotspotAdapter.setCurrentLocation(location);
                         //Log.i("LOCATION:", "LON" + location.getLongitude() + " LAT: "+ location.getLatitude());
                     }

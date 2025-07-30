@@ -25,4 +25,18 @@
     <string name="settings_notity_already_fresh">База уже в актуальном состоянии!</string>
     <string name="settings_notity_update_success">База успешно обновлена!</string>
     <string name="settings_notity_update_failure">Не удалось обновить базу: %s</string>
+
+    <string name="about_title">Free WiFi Tatarstan</string>
+    <string name="about_subtitle">Список публичных WiFI-точек в Республике Татарстан</string>
+    <string name="about_description1">
+        Приложение использует базу WiFI-точек Минцифры РТ.\n
+        ВАЖНО: это НЕ ОФИЦИАЛЬНОЕ приложение! Однако вы всегда можете использовать официальную карту.
+    </string>
+    <string name="about_description2">
+        Это приложение позволяет найти бесплатный WiFi даже не имея доступа в интернет!\n
+        Если приложение вам полезно вы можете поддержать разработчика материально:-)
+    </string>
+    <string name="about_button_open_map">Открыть официальную карту</string>
+    <string name="about_button_donate">Поддержать разработчика</string>
+
 </resources>

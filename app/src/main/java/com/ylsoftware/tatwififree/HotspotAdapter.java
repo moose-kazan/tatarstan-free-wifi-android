@@ -19,9 +19,12 @@ public class HotspotAdapter extends RecyclerView.Adapter<HotspotAdapter.ViewHold
     public final List<Hotspot> hotspots;
     private OnItemClickListener listener = null;
 
-    public HotspotAdapter(List<Hotspot> hotspots, OnItemClickListener listener) {
+    public HotspotAdapter(List<Hotspot> hotspots, OnItemClickListener listener, Location lastLocation) {
         this.hotspots = hotspots;
         this.listener = listener;
+        if (lastLocation != null) {
+            this.setCurrentLocation(lastLocation);
+        }
     }
 
     public interface OnItemClickListener {
@@ -40,6 +43,13 @@ public class HotspotAdapter extends RecyclerView.Adapter<HotspotAdapter.ViewHold
         Hotspot hotspot = this.hotspots.get(position);
         holder.addrView.setText(hotspot.address);
         holder.distanceView.setText(formatDistance(holder.itemView.getContext(), hotspot.distance));
+
+        if (position % 2 == 0) {
+            holder.itemView.setBackgroundColor(holder.itemView.getContext().getColor(R.color.itemBg));
+        }
+        else {
+            holder.itemView.setBackgroundColor(holder.itemView.getContext().getColor(R.color.itemBgAlt));
+        }
         if (this.listener != null) {
             holder.itemContainer.setOnClickListener(view -> listener.onItemClick(hotspot));
         }
@@ -69,7 +79,7 @@ public class HotspotAdapter extends RecyclerView.Adapter<HotspotAdapter.ViewHold
             tmpLocation.setLongitude(tmpHotspot.lon);
             tmpHotspot.distance = location.distanceTo(tmpLocation);
             this.hotspots.set(i, tmpHotspot);
-            this.notifyItemChanged(i);
+            //this.notifyItemChanged(i);
         }
         this.hotspots.sort(new HotspotComparator());
         this.notifyDataSetChanged();
