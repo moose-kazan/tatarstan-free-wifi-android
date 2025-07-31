@@ -1,0 +1,96 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!-- Created with Inkscape (http://www.inkscape.org/) -->
+
+<svg
+   width="512"
+   height="512"
+   viewBox="0 0 135.46666 135.46667"
+   version="1.1"
+   id="svg5"
+   inkscape:version="1.2.2 (b0a8486541, 2022-12-01)"
+   sodipodi:docname="TatFreeWifi.svg"
+   xmlns:inkscape="http://www.inkscape.org/namespaces/inkscape"
+   xmlns:sodipodi="http://sodipodi.sourceforge.net/DTD/sodipodi-0.dtd"
+   xmlns="http://www.w3.org/2000/svg"
+   xmlns:svg="http://www.w3.org/2000/svg">
+  <sodipodi:namedview
+     id="namedview7"
+     pagecolor="#ffffff"
+     bordercolor="#666666"
+     borderopacity="1.0"
+     inkscape:showpageshadow="2"
+     inkscape:pageopacity="0.0"
+     inkscape:pagecheckerboard="0"
+     inkscape:deskcolor="#d1d1d1"
+     inkscape:document-units="mm"
+     showgrid="false"
+     inkscape:zoom="1.4311968"
+     inkscape:cx="-108.65033"
+     inkscape:cy="170.48668"
+     inkscape:window-width="2560"
+     inkscape:window-height="1342"
+     inkscape:window-x="0"
+     inkscape:window-y="48"
+     inkscape:window-maximized="1"
+     inkscape:current-layer="svg5" />
+  <defs
+     id="defs2" />
+  <rect
+     style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#2e3436;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.273822px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+     id="rect1585"
+     width="75.926178"
+     height="112.96784"
+     x="29.770245"
+     y="11.249411"
+     rx="6.4618883"
+     ry="5.2495942" />
+  <rect
+     style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.273013px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+     id="rect1634"
+     width="62.168655"
+     height="75.926987"
+     x="36.649006"
+     y="18.128174"
+     rx="6.5441623"
+     ry="5.5191417" />
+  <path
+     style="fill:#ffffff;fill-opacity:1;stroke:#000000;stroke-width:0.329578;stroke-linecap:square;stroke-linejoin:bevel;stroke-miterlimit:4;stroke-dasharray:none"
+     id="path1638"
+     sodipodi:type="arc"
+     sodipodi:cx="67.733322"
+     sodipodi:cy="109.2729"
+     sodipodi:rx="8.0369949"
+     sodipodi:ry="8.0369673"
+     sodipodi:start="0.55227808"
+     sodipodi:end="0.54982536"
+     sodipodi:arc-type="arc"
+     d="m 74.57547,113.48932 a 8.0369949,8.0369673 0 0 1 -11.054384,2.62829 8.0369949,8.0369673 0 0 1 -2.635077,-11.05273 8.0369949,8.0369673 0 0 1 11.051152,-2.64185 8.0369949,8.0369673 0 0 1 2.64863,11.0495"
+     sodipodi:open="true" />
+  <rect
+     style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#008000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+     id="rect1664"
+     width="62.168652"
+     height="37.963493"
+     x="36.649006"
+     y="18.128174"
+     rx="6.5441618"
+     ry="5.5191417" />
+  <rect
+     style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#ff0000;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+     id="rect1668"
+     width="62.168652"
+     height="37.963493"
+     x="36.649006"
+     y="56.091667"
+     rx="6.5441613"
+     ry="5.5191417" />
+  <rect
+     style="font-variation-settings:normal;opacity:1;vector-effect:none;fill:#ffffff;fill-opacity:1;fill-rule:evenodd;stroke:#000000;stroke-width:0.264583px;stroke-linecap:butt;stroke-linejoin:miter;stroke-miterlimit:4;stroke-dasharray:none;stroke-dashoffset:0;stroke-opacity:1;-inkscape-stroke:none;stop-color:#000000;stop-opacity:1"
+     id="rect1672"
+     width="62.168655"
+     height="10.349595"
+     x="36.649006"
+     y="51.183277"
+     rx="0"
+     ry="0" />
+</svg>
