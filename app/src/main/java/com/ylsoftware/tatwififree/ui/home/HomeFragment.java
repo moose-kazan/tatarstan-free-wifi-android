@@ -8,9 +8,14 @@ import android.location.Location;
 import android.net.Uri;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.KeyEvent;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+import android.view.inputmethod.EditorInfo;
+import android.widget.EditText;
+import android.widget.SearchView;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
@@ -38,6 +43,8 @@ public class HomeFragment extends Fragment {
 
     private SwipeRefreshLayout swipeRefreshLayout;
 
+    private SearchView searchView;
+
     private FragmentHomeBinding binding;
 
     private FusedLocationProviderClient fusedLocationClient;
@@ -50,6 +57,8 @@ public class HomeFragment extends Fragment {
             this.lastLocation = new Location("");
             this.lastLocation.setLatitude(savedInstanceState.getDouble("last_lat", 0));
             this.lastLocation.setLongitude(savedInstanceState.getDouble("last_lon", 0));
+
+            this.searchView.setQuery(savedInstanceState.getCharSequence("search_query", ""), true);
             //Log.i("FOUNDLOCATION", this.lastLocation.toString());
         }
 
@@ -65,6 +74,25 @@ public class HomeFragment extends Fragment {
         View root = binding.getRoot();
 
         final RecyclerView hotspotListView = root.findViewById(R.id.hotspot_list);
+        searchView = root.findViewById(R.id.search_view);
+        int searchSrcTextId = searchView.getContext().getResources().getIdentifier("android:id/search_src_text", null, null);
+        EditText searchEditText = searchView.findViewById(searchSrcTextId);
+        if (searchEditText != null) {
+            searchEditText.setOnEditorActionListener(new TextView.OnEditorActionListener() {
+                @Override
+                public boolean onEditorAction(TextView textView, int actionId, KeyEvent keyEvent) {
+                    if (actionId == EditorInfo.IME_ACTION_SEARCH) {
+                        hotspotAdapter.setSearchText(searchEditText.getText().toString());
+                        return true;
+                    }
+                    if (actionId == EditorInfo.IME_ACTION_NONE) {
+
+                    }
+                    return false;
+                }
+            });
+        }
+
 
         RecyclerView.LayoutManager layoutMgr = new LinearLayoutManager(getActivity());
 
@@ -91,6 +119,7 @@ public class HomeFragment extends Fragment {
         super.onSaveInstanceState(outState);
         outState.putDouble("last_lon", lastLocation.getLongitude());
         outState.putDouble("last_lat", lastLocation.getLatitude());
+        outState.putCharSequence("search_query", searchView.getQuery());
     }
 
     private void openNavigator(Hotspot hotspot) {

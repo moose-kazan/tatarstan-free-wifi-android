@@ -11,16 +11,21 @@ import android.widget.TextView;
 import androidx.annotation.NonNull;
 import androidx.recyclerview.widget.RecyclerView;
 
+import java.util.ArrayList;
 import java.util.Comparator;
 import java.util.List;
 
 
 public class HotspotAdapter extends RecyclerView.Adapter<HotspotAdapter.ViewHolder>{
     public final List<Hotspot> hotspots;
+    public final List<Hotspot> hotspots_filtered = new ArrayList<>();
+
+    public String searchQuery = "";
     private OnItemClickListener listener = null;
 
     public HotspotAdapter(List<Hotspot> hotspots, OnItemClickListener listener, Location lastLocation) {
         this.hotspots = hotspots;
+        filterHotspots();
         this.listener = listener;
         if (lastLocation != null) {
             this.setCurrentLocation(lastLocation);
@@ -40,7 +45,7 @@ public class HotspotAdapter extends RecyclerView.Adapter<HotspotAdapter.ViewHold
 
     @Override
     public void onBindViewHolder(@NonNull HotspotAdapter.ViewHolder holder, int position) {
-        Hotspot hotspot = this.hotspots.get(position);
+        Hotspot hotspot = this.hotspots_filtered.get(position);
         holder.addrView.setText(hotspot.address);
         holder.distanceView.setText(formatDistance(holder.itemView.getContext(), hotspot.distance));
 
@@ -68,7 +73,7 @@ public class HotspotAdapter extends RecyclerView.Adapter<HotspotAdapter.ViewHold
 
     @Override
     public int getItemCount() {
-        return this.hotspots.size();
+        return this.hotspots_filtered.size();
     }
 
     public void setCurrentLocation(Location location) {
@@ -82,7 +87,30 @@ public class HotspotAdapter extends RecyclerView.Adapter<HotspotAdapter.ViewHold
             //this.notifyItemChanged(i);
         }
         this.hotspots.sort(new HotspotComparator());
+        filterHotspots();
         this.notifyDataSetChanged();
+    }
+
+    public void setSearchText(String searchQuery) {
+        this.searchQuery = searchQuery;
+        filterHotspots();
+        this.notifyDataSetChanged();
+    }
+
+    private void filterHotspots() {
+        hotspots_filtered.clear();
+
+        if (this.searchQuery.isEmpty()) {
+            hotspots_filtered.addAll(hotspots);
+            return;
+        }
+
+        String loweredSearchQuery = this.searchQuery.toLowerCase();
+        for (int i = 0; i < this.hotspots.size(); i++) {
+            if (this.hotspots.get(i).address.toLowerCase().contains(loweredSearchQuery)) {
+                hotspots_filtered.add(hotspots.get(i));
+            }
+        }
     }
 
     public static class HotspotComparator implements Comparator<Hotspot> {

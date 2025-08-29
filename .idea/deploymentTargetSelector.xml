@@ -4,7 +4,7 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-07-19T02:58:31.026756337Z">
+        <DropdownSelection timestamp="2025-07-30T19:13:47.553257917Z">
           <Target type="DEFAULT_BOOT">
             <handle>
               <DeviceId pluginId="LocalEmulator" identifier="path=/home/moose/.android/avd/Pixel_2_API_30.avd" />

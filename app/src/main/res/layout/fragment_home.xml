@@ -5,9 +5,21 @@
     android:layout_width="match_parent"
     android:layout_height="match_parent"
     tools:context=".ui.home.HomeFragment">
+    <LinearLayout
+        android:layout_width="fill_parent"
+        android:layout_height="fill_parent"
+        android:orientation="vertical">
+    <SearchView
+        android:id="@+id/search_view"
+        android:layout_height="wrap_content"
+        android:layout_width="fill_parent"
+        android:iconifiedByDefault="false"
+        android:queryHint="@string/search_query_hint">
+    </SearchView>
 
     <androidx.recyclerview.widget.RecyclerView
         android:id="@+id/hotspot_list"
-        android:layout_width="match_parent"
+        android:layout_width="fill_parent"
         android:layout_height="match_parent" />
+    </LinearLayout>
 </androidx.swiperefreshlayout.widget.SwipeRefreshLayout>
