@@ -85,9 +85,6 @@ public class HomeFragment extends Fragment {
                         hotspotAdapter.setSearchText(searchEditText.getText().toString());
                         return true;
                     }
-                    if (actionId == EditorInfo.IME_ACTION_NONE) {
-
-                    }
                     return false;
                 }
             });
