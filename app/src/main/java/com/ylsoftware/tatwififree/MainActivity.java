@@ -1,6 +1,8 @@
 package com.ylsoftware.tatwififree;
 
 import android.Manifest;
+import android.app.UiModeManager;
+import android.content.Context;
 import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
@@ -22,6 +24,8 @@ import androidx.appcompat.app.AppCompatActivity;
 import com.ylsoftware.tatwififree.databinding.ActivityMainBinding;
 
 public class MainActivity extends AppCompatActivity {
+    public static String SETTIGS_UI_MODE = "uiMode";
+
     private AppBarConfiguration mAppBarConfiguration;
     private ActivityMainBinding binding;
 
@@ -31,6 +35,16 @@ public class MainActivity extends AppCompatActivity {
 
     @Override
     protected void onCreate(Bundle savedInstanceState) {
+        UiModeManager uiManager = (UiModeManager) getApplicationContext().getSystemService(Context.UI_MODE_SERVICE);
+        int uiMode = getPreferences(Context.MODE_PRIVATE).getInt(SETTIGS_UI_MODE, UiModeManager.MODE_NIGHT_AUTO);
+        if (uiMode == UiModeManager.MODE_NIGHT_YES) {
+            uiManager.setApplicationNightMode(UiModeManager.MODE_NIGHT_YES);
+        } else if (uiMode == UiModeManager.MODE_NIGHT_NO) {
+            uiManager.setApplicationNightMode(UiModeManager.MODE_NIGHT_NO);
+        } else {
+            uiManager.setApplicationNightMode(UiModeManager.MODE_NIGHT_AUTO);
+        }
+
         super.onCreate(savedInstanceState);
 
         // Check if location permission is granted

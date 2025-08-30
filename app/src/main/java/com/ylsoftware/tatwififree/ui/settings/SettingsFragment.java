@@ -1,5 +1,8 @@
 package com.ylsoftware.tatwififree.ui.settings;
 
+import android.app.UiModeManager;
+import android.content.Context;
+import android.content.SharedPreferences;
 import android.os.Bundle;
 
 import androidx.annotation.NonNull;
@@ -11,10 +14,12 @@ import android.view.View;
 import android.view.ViewGroup;
 import android.widget.Button;
 import android.widget.ProgressBar;
+import android.widget.RadioButton;
 import android.widget.TextView;
 import android.widget.Toast;
 
 import com.ylsoftware.tatwififree.HotspotLoader;
+import com.ylsoftware.tatwififree.MainActivity;
 import com.ylsoftware.tatwififree.R;
 import com.ylsoftware.tatwififree.databinding.FragmentSettingsBinding;
 
@@ -51,6 +56,40 @@ public class SettingsFragment extends Fragment {
         updateProgress.setVisibility(View.GONE);
 
         this.updateInfoText();
+
+        View.OnClickListener setThemeListener = new View.OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                UiModeManager uiManager = (UiModeManager) requireActivity().getApplicationContext().getSystemService(Context.UI_MODE_SERVICE);
+                if (view.getId() == R.id.theme_system) {
+                    uiManager.setApplicationNightMode(UiModeManager.MODE_NIGHT_AUTO);
+                    requireActivity().getPreferences(Context.MODE_PRIVATE).edit().putInt(MainActivity.SETTIGS_UI_MODE, UiModeManager.MODE_NIGHT_AUTO).apply();
+                } else if (view.getId() == R.id.theme_light) {
+                    uiManager.setApplicationNightMode(UiModeManager.MODE_NIGHT_NO);
+                    requireActivity().getPreferences(Context.MODE_PRIVATE).edit().putInt(MainActivity.SETTIGS_UI_MODE, UiModeManager.MODE_NIGHT_NO).apply();
+                } else if (view.getId() == R.id.theme_dark) {
+                    uiManager.setApplicationNightMode(UiModeManager.MODE_NIGHT_YES);
+                    requireActivity().getPreferences(Context.MODE_PRIVATE).edit().putInt(MainActivity.SETTIGS_UI_MODE, UiModeManager.MODE_NIGHT_YES).apply();
+                }
+            }
+        };
+
+        RadioButton buttonThemeSystem = root.findViewById(R.id.theme_system);
+        RadioButton buttonThemeLight = root.findViewById(R.id.theme_light);
+        RadioButton buttonThemeDark = root.findViewById(R.id.theme_dark);
+
+        buttonThemeSystem.setOnClickListener(setThemeListener);
+        buttonThemeLight.setOnClickListener(setThemeListener);
+        buttonThemeDark.setOnClickListener(setThemeListener);
+
+        int uiMode = requireActivity().getPreferences(Context.MODE_PRIVATE).getInt(MainActivity.SETTIGS_UI_MODE, UiModeManager.MODE_NIGHT_AUTO);
+        if (uiMode == UiModeManager.MODE_NIGHT_YES) {
+            buttonThemeDark.setChecked(true);
+        } else if (uiMode == UiModeManager.MODE_NIGHT_NO) {
+            buttonThemeLight.setChecked(true);
+        } else {
+            buttonThemeSystem.setChecked(true);
+        }
 
         return root;
     }

@@ -28,6 +28,11 @@
     <string name="settings_notity_update_success">База успешно обновлена!</string>
     <string name="settings_notity_update_failure">Не удалось обновить базу: %s</string>
 
+    <string name="settings_app_theme">Вид приложения</string>
+    <string name="settings_theme_system">Системная тема</string>
+    <string name="settings_theme_light">Светлая тема</string>
+    <string name="settings_theme_dark">Тёмная тема</string>
+
     <string name="about_title">Free WiFi Tatarstan</string>
     <string name="about_subtitle">Список публичных WiFI-точек в Республике Татарстан</string>
     <string name="about_description1">

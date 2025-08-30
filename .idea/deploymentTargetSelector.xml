@@ -4,10 +4,10 @@
     <selectionStates>
       <SelectionState runConfigName="app">
         <option name="selectionMode" value="DROPDOWN" />
-        <DropdownSelection timestamp="2025-07-30T19:13:47.553257917Z">
+        <DropdownSelection timestamp="2025-08-30T15:49:26.554824519Z">
           <Target type="DEFAULT_BOOT">
             <handle>
-              <DeviceId pluginId="LocalEmulator" identifier="path=/home/moose/.android/avd/Pixel_2_API_30.avd" />
+              <DeviceId pluginId="PhysicalDevice" identifier="serial=R58R530GMAN" />
             </handle>
           </Target>
         </DropdownSelection>

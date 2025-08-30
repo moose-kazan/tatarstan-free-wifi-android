@@ -28,6 +28,11 @@
     <string name="settings_notity_update_success">Database successfully updated!</string>
     <string name="settings_notity_update_failure">Can\'t update database: %s</string>
 
+    <string name="settings_app_theme">App theme</string>
+    <string name="settings_theme_system">System theme</string>
+    <string name="settings_theme_light">Light theme</string>
+    <string name="settings_theme_dark">Dark theme</string>
+
     <string name="about_title">Free WiFi Tatarstan</string>
     <string name="about_subtitle">List of public hotspots in Tatarstan Republic</string>
     <string name="about_description1">
