@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Free WiFi Tatarstan</string>
+    <string name="app_name">Public WiFi Tatarstan</string>
     <string name="navigation_drawer_open">Open navigation drawer</string>
     <string name="navigation_drawer_close">Close navigation drawer</string>
     <string name="nav_header_title">Tatarstan free WiFi</string>
@@ -33,7 +33,7 @@
     <string name="settings_theme_light">Light theme</string>
     <string name="settings_theme_dark">Dark theme</string>
 
-    <string name="about_title">Free WiFi Tatarstan</string>
+    <string name="about_title">Public WiFi Tatarstan</string>
     <string name="about_subtitle">List of public hotspots in Tatarstan Republic</string>
     <string name="about_description1">
         This app uses the hotspot database of the Ministry of Digitalization of the Tatarstan.\n

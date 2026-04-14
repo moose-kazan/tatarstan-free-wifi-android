@@ -1,5 +1,5 @@
 <resources>
-    <string name="app_name">Free WiFi Tatarstan</string>
+    <string name="app_name">Public WiFi Tatarstan</string>
     <string name="navigation_drawer_open">Открыть меню</string>
     <string name="navigation_drawer_close">Закрыть меню</string>
     <string name="nav_header_title">Бесплатный WiFi в Татарстане</string>
@@ -33,7 +33,7 @@
     <string name="settings_theme_light">Светлая тема</string>
     <string name="settings_theme_dark">Тёмная тема</string>
 
-    <string name="about_title">Free WiFi Tatarstan</string>
+    <string name="about_title">Public WiFi Tatarstan</string>
     <string name="about_subtitle">Список публичных WiFI-точек в Республике Татарстан</string>
     <string name="about_description1">
         Приложение использует базу WiFI-точек Минцифры РТ.\n
